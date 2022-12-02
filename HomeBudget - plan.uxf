@@ -1,15 +1,217 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.0.0">
-  <zoom_level>10</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>310</x>
-      <y>230</y>
-      <w>100</w>
-      <h>30</h>
+      <x>16</x>
+      <y>464</y>
+      <w>128</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>SimpleClass</panel_attributes>
+    <panel_attributes>Menu
+--
+-menuChoose: char</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>152</x>
+      <y>464</y>
+      <w>224</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>HomeBudget
+--
+-mainMenuChoose(): char
+-userMenuChoose(): char
++userRegistration(): 
++userLogIn(): 
++addNewIncome(): 
++addNewExpense(): 
++showBalanceForCurrentMonth(): 
++showBalanceForPreviousMonth(): 
++showBalanceForChoosenMonth(): 
++changePassword(): 
++logOut(): 
++didUserLogIn():
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>0</y>
+      <w>280</w>
+      <h>248</h>
+    </coordinates>
+    <panel_attributes>User
+-
+-userId: integer
+-userLogin: string
+-userPassword: string
+-userName: string
+-userSurname: string
+--
++void setUserId(int newId);
++void setUserLogin(string newLogin);
++void setUserPassword(string newUserPassword);
++void setUserName(string newUserName);
++void setUserSurname(string newUserSurname);
++int getUserId();
++string getUserLogin();
++string getUserPassword();
++string getUserName();
++string getUserSurname();
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>384</x>
+      <y>208</y>
+      <w>280</w>
+      <h>248</h>
+    </coordinates>
+    <panel_attributes>UserManager
+-
+
+-
++userRegistration(): 
++userLogIn(): 
++changePassword(): 
++logOut(): 
++didUserLogIn():</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>464</y>
+      <w>424</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>/MainBudgetFile/
+-
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>256</y>
+      <w>424</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>UserFile
+-
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>600</y>
+      <w>208</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>IncomesFile
+-
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>888</x>
+      <y>600</y>
+      <w>208</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>ExpenseFile
+-
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>792</y>
+      <w>424</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>/Cost/
+-
+userId: integer
+data: string
+item: string
+amount: float
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>880</y>
+      <w>208</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>Income
+-
+incomeId: integer
+-
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>888</x>
+      <y>880</y>
+      <w>208</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>Expense
+-
+expenseId: integer
+-
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1120</x>
+      <y>344</y>
+      <w>424</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>SupportMethod
+-
+loadChar(): static char</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>384</x>
+      <y>464</y>
+      <w>280</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>BudgetManager
+-
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
