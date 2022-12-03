@@ -35,3 +35,12 @@ string SupportMethod::convertIntToString(int number)
     string str = ss.str();
     return str;
 }
+
+int SupportMethod::convertStringToInt(string number)
+{
+    int numberInt;
+    istringstream iss(number);
+    iss >> numberInt;
+
+    return numberInt;
+}
