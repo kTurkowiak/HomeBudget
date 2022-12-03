@@ -6,7 +6,6 @@ void UserManager::userRegistration()
     users.push_back(user);
     userFile.saveNewUserIntoFile(user);
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
-    cout <<"Wektor User size: " << users.size()<< endl;  //do pozniejszego usuniecia
     system ("pause");
 }
 

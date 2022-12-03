@@ -14,6 +14,9 @@ class UserManager
 {
     vector <User> users;
     UserFile userFile;
+    int currentLogInUser;
+
+
 
     User getNewUserData();
     int setIdForNewUser();
@@ -21,10 +24,13 @@ class UserManager
     void showAllUser();
 
 
+
 public:
     UserManager ()
     {
-        showAllUser(); //do pozniejszego usuniecia
+        users = userFile.loadUsersFromFile();
+        showAllUser();
+
     }
 
     void userRegistration();

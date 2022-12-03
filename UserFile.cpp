@@ -25,3 +25,41 @@ void UserFile::saveNewUserIntoFile(User user)
     xml.Save("users.xml");
 
 }
+
+vector <User> UserFile::loadUsersFromFile()
+{
+    User user;
+    vector <User> users;
+    CMarkup xml;
+    bool fileExists = xml.Load( "users.xml" );
+    if (!fileExists)
+    {
+        cout << "Plik z uzytkownikami nie istnieje. Prosze o zarejestrowanie uzytkownikow" << endl;
+        return users;
+    }
+    xml.FindElem();
+    xml.IntoElem();
+    while (xml.FindElem("User"))
+    {
+        xml.IntoElem();
+        xml.FindElem("UserId");
+        user.setUserId(SupportMethod::convertStringToInt(xml.GetData()));
+        //cout << "z pliku user.UserId: " << user.getUserId() <<endl;           //do pozniejszego usuniecia
+        xml.FindElem("Login");
+        user.setUserLogin(xml.GetData());
+        //cout << "z pliku user.getUserId: " << user.getUserLogin() <<endl;     //do pozniejszego usuniecia
+        xml.FindElem("Password");
+        user.setUserPassword(xml.GetData());
+        //cout << "z pliku user.getUserPassword: " << user.getUserPassword() <<endl;    //do pozniejszego usuniecia
+        xml.FindElem("Name");
+        user.setUserName(xml.GetData());
+        //cout << "z pliku user.getUserName: " << user.getUserName() <<endl;        //do pozniejszego usuniecia
+        xml.FindElem("Surname");
+        user.setUserSurname(xml.GetData());
+        //cout << "z pliku user.getUserSurname: " << user.getUserSurname() <<endl;  //do pozniejszego usuniecia
+        users.push_back (user);
+        xml.OutOfElem();
+    }
+    return users;
+}
+
