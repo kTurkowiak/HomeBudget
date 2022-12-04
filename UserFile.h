@@ -18,7 +18,8 @@ class UserFile
 
 public:
     void saveNewUserIntoFile(User user);
-    vector <User> loadUsersFromFile();
+    vector <User> loadUsersFromFile();              //do usuniecie cout'ow
+    void saveAllUserPassword(vector <User> users); //do usuniecie cout'ow
 
 
 };

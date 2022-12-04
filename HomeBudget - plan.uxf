@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>900</y>
+      <y>912</y>
       <w>192</w>
       <h>72</h>
     </coordinates>
@@ -18,7 +18,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>204</x>
-      <y>900</y>
+      <y>912</y>
       <w>336</w>
       <h>276</h>
     </coordinates>
@@ -43,7 +43,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>996</x>
-      <y>156</y>
+      <y>168</y>
       <w>420</w>
       <h>372</h>
     </coordinates>
@@ -73,7 +73,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>552</x>
-      <y>516</y>
+      <y>528</y>
       <w>420</w>
       <h>372</h>
     </coordinates>
@@ -95,7 +95,7 @@ UserFile userFile
     <id>UMLClass</id>
     <coordinates>
       <x>984</x>
-      <y>900</y>
+      <y>912</y>
       <w>636</w>
       <h>192</h>
     </coordinates>
@@ -108,7 +108,7 @@ UserFile userFile
     <id>UMLClass</id>
     <coordinates>
       <x>1068</x>
-      <y>576</y>
+      <y>564</y>
       <w>636</w>
       <h>288</h>
     </coordinates>
@@ -118,6 +118,7 @@ UserFile userFile
 -
 +saveNewUserIntoFile():void
 +loadUserFromFile(): void
++saveNewPasswordForCurrentLogInUser(): void
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -125,7 +126,7 @@ UserFile userFile
     <id>UMLClass</id>
     <coordinates>
       <x>984</x>
-      <y>1104</y>
+      <y>1116</y>
       <w>312</w>
       <h>276</h>
     </coordinates>
@@ -138,7 +139,7 @@ UserFile userFile
     <id>UMLClass</id>
     <coordinates>
       <x>1308</x>
-      <y>1104</y>
+      <y>1116</y>
       <w>312</w>
       <h>276</h>
     </coordinates>
@@ -151,30 +152,41 @@ UserFile userFile
     <id>UMLClass</id>
     <coordinates>
       <x>984</x>
-      <y>1392</y>
+      <y>1404</y>
       <w>636</w>
-      <h>120</h>
+      <h>360</h>
     </coordinates>
     <panel_attributes>/Cost/
--
-userId: integer
-data: string
-item: string
-amount: float
-</panel_attributes>
+--
+-userId: integer
+-costId: integer
+-costDate: integer
+-costItem string
+-costAmount float
+--
++setUserId (); void
++setCostId (); void
++setCostDate (); void
++setCostItem (); void
++setCostAmount (); void
++getUserId(); integer
++getCostId (); integer
++getCostDate(); integer
++getCostItem(); string
++getCostAmount(); float</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>984</x>
-      <y>1524</y>
+      <y>1800</y>
       <w>312</w>
       <h>348</h>
     </coordinates>
     <panel_attributes>Income
 -
-incomeId: integer
+
 -
 </panel_attributes>
     <additional_attributes/>
@@ -182,14 +194,14 @@ incomeId: integer
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1308</x>
-      <y>1524</y>
+      <x>1356</x>
+      <y>1800</y>
       <w>312</w>
       <h>348</h>
     </coordinates>
     <panel_attributes>Expense
 -
-expenseId: integer
+
 -
 
 </panel_attributes>
@@ -199,20 +211,23 @@ expenseId: integer
     <id>UMLClass</id>
     <coordinates>
       <x>1812</x>
-      <y>696</y>
+      <y>708</y>
       <w>636</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>SupportMethod
 -
-loadChar(): static char</panel_attributes>
++loadChar(): static char
++loadLine(): static string
++convertIntToString(): static string
++convertStringToInt(): static integer</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>552</x>
-      <y>900</y>
+      <y>912</y>
       <w>420</w>
       <h>480</h>
     </coordinates>
@@ -225,7 +240,7 @@ loadChar(): static char</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1188</x>
-      <y>1080</y>
+      <y>1092</y>
       <w>84</w>
       <h>48</h>
     </coordinates>
@@ -236,7 +251,7 @@ loadChar(): static char</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1296</x>
-      <y>1080</y>
+      <y>1092</y>
       <w>132</w>
       <h>48</h>
     </coordinates>
@@ -247,29 +262,29 @@ loadChar(): static char</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1320</x>
-      <y>1500</y>
-      <w>108</w>
-      <h>48</h>
+      <y>1752</y>
+      <w>120</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>70.0;20.0;10.0;10.0</additional_attributes>
+    <additional_attributes>80.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>1164</x>
-      <y>1500</y>
+      <y>1752</y>
       <w>120</w>
-      <h>48</h>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;20.0;80.0;10.0</additional_attributes>
+    <additional_attributes>10.0;40.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>324</x>
-      <y>636</y>
+      <y>648</y>
       <w>252</w>
       <h>288</h>
     </coordinates>
@@ -280,18 +295,18 @@ loadChar(): static char</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1692</x>
-      <y>624</y>
+      <y>612</y>
       <w>444</w>
-      <h>96</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>350.0;60.0;220.0;20.0;10.0;10.0</additional_attributes>
+    <additional_attributes>350.0;80.0;220.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>744</x>
-      <y>72</y>
+      <y>84</y>
       <w>1464</w>
       <h>648</h>
     </coordinates>
@@ -302,18 +317,18 @@ loadChar(): static char</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>960</x>
-      <y>612</y>
+      <y>600</y>
       <w>132</w>
-      <h>36</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+    <additional_attributes>10.0;30.0;90.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>912</x>
-      <y>252</y>
+      <y>264</y>
       <w>108</w>
       <h>288</h>
     </coordinates>
@@ -324,12 +339,12 @@ loadChar(): static char</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1404</x>
-      <y>252</y>
+      <y>264</y>
       <w>264</w>
-      <h>348</h>
+      <h>324</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
-    <additional_attributes>120.0;270.0;120.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>120.0;250.0;120.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

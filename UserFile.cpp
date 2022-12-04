@@ -63,3 +63,29 @@ vector <User> UserFile::loadUsersFromFile()
     return users;
 }
 
+void UserFile::saveAllUserPassword(vector <User> users) //do usuniecie cout'ow
+{
+
+    CMarkup xml;
+    bool fileExists = xml.Load( "users.xml" );
+    xml.FindElem();
+    xml.IntoElem();
+    //cout << "IntoElem1: " << xml.GetData() <<endl;
+    int checkedUserId;
+        for (vector <User>:: iterator itr = users.begin(); itr!=users.end(); itr++)
+        {
+            xml.FindElem("User");
+            xml.IntoElem();
+            cout << "IntoElem2: " << xml.GetData()<<endl;
+            xml.FindElem("Password");
+            //cout << "FindElem(Password): " << xml.GetData() <<endl;  //do pozniejszego usuniecia
+            //cout<< "Wszedlem w wektor"<<endl;
+            //cout<< "itr id ->"<< itr ->getUserId()<<endl;
+            //cout<< "itr password ->"<< itr ->getUserPassword()<<endl;
+            xml.SetData(itr ->getUserPassword());
+            //cout << "FindElem(PasswordSetData) po zmianie hasla: " << xml.GetData() <<endl;
+            xml.OutOfElem();
+        }
+        xml.Save("users.xml");
+
+}
