@@ -87,7 +87,8 @@ UserFile userFile
 +userLogIn(): 
 +changePassword(): 
 +logOut(): 
-+didUserLogIn():</panel_attributes>
++didUserLogIn():
+-loadUsersFromFile(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

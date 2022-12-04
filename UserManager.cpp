@@ -60,3 +60,47 @@ void UserManager::showAllUser() //do pozniejszego usuniecia
         cout << "User Nazwisko: " << users[i].getUserSurname() << endl;
     }
 }
+
+void UserManager::userLogIn()
+{
+    User user;
+    string login = "", password = "";
+    cout << endl << "Podaj login: ";
+    login = SupportMethod::loadLine();
+    vector <User>:: iterator itr = users.begin();
+    while (itr != users.end())
+    {
+        if (itr -> getUserLogin() == login)
+        {
+            for (int trialNumber = 3; trialNumber >0; trialNumber--)
+            {
+                cout << "Podaj haslo. Pozostalo prob: " << trialNumber << ": ";
+                password = SupportMethod::loadLine();
+                if (itr -> getUserPassword() == password)
+                {
+                    cout << endl << "Zalogowales sie." << endl << endl;
+                    system("pause");
+                    currentLogInUser = itr -> getUserId();
+                    return;
+                }
+            }
+            cout << "Wprowadzono 3 razy bledne haslo." << endl;
+            currentLogInUser = 0;
+            system("pause");
+            return;
+        }
+        itr++;
+    }
+    cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+    system("pause");
+    currentLogInUser = 0;
+}
+
+bool UserManager::didUserLogIn()
+{
+    if (currentLogInUser > 0)
+    {
+        return true;
+    }
+    else return false;
+}
