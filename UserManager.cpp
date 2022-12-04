@@ -104,3 +104,8 @@ bool UserManager::didUserLogIn()
     }
     else return false;
 }
+
+void UserManager::userLogOut()
+{
+    currentLogInUser = 0;
+}

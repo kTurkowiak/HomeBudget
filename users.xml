@@ -21,4 +21,11 @@
 <Name>Ada</Name>
 <Surname>Turkowiak</Surname>
 </User>
+<User>
+<UserId>4</UserId>
+<Login>spam</Login>
+<Password>spam</Password>
+<Name>spam</Name>
+<Surname>spam</Surname>
+</User>
 </Users>
