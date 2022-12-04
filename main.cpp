@@ -55,7 +55,7 @@ int main()
                 //homeBudget.changePassword();
                 break;
             case '7':
-                //homeBudget.logOut();
+                homeBudget.userLogOut();
                 break;
             default:
                 cout << endl << "Nie ma takiej opcji, wybierz ponownie." << endl << endl;

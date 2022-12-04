@@ -29,14 +29,14 @@ public:
     UserManager ()
     {
         users = userFile.loadUsersFromFile();
-        showAllUser();
+        //showAllUser();                                   do pozniejszego usuniecia
 
     }
 
     void userRegistration();
     void userLogIn();
     //changePassword();
-    //logOut();
+    void userLogOut();
     bool didUserLogIn();
 
 
