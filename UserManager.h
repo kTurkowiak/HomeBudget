@@ -34,10 +34,10 @@ public:
     }
 
     void userRegistration();
-    //userLogIn();
+    void userLogIn();
     //changePassword();
     //logOut();
-    //didUserLogIn();
+    bool didUserLogIn();
 
 
 };
