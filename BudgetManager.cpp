@@ -2,7 +2,7 @@
 
 void BudgetManager::addNewIncome()
 {
-    //dodaæ pêtlê pytaj¹c¹ o dane
-    cout << "Tutaj bêdzie dodawanie wartosci do income" << endl;
+    //dodac petle pytajaca  o dane
+    cout << "Tutaj bedzie dodawanie wartosci do income" << endl;
 
 }

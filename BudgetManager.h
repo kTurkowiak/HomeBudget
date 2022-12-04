@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "Income.h"
 #include "Expense.h"
@@ -17,7 +18,7 @@ class BudgetManager
 {
     const int CURRENT_LOGEDIN_USER;
     //vector <Expense> expenses;
-    //vector <Income> incomes;
+    vector <Income> incomes;
 
 
 public:

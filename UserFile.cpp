@@ -76,7 +76,7 @@ void UserFile::saveAllUserPassword(vector <User> users) //do usuniecie cout'ow
         {
             xml.FindElem("User");
             xml.IntoElem();
-            cout << "IntoElem2: " << xml.GetData()<<endl;
+            //cout << "IntoElem2: " << xml.GetData()<<endl; /do pozniejszego usuniecia
             xml.FindElem("Password");
             //cout << "FindElem(Password): " << xml.GetData() <<endl;  //do pozniejszego usuniecia
             //cout<< "Wszedlem w wektor"<<endl;

@@ -29,7 +29,7 @@ public:
     UserManager ()
     {
         users = userFile.loadUsersFromFile();
-        showAllUser();                                   //do pozniejszego usuniecia
+        //showAllUser();                                   //do pozniejszego usuniecia
 
     }
     int getCurrentLogInUser();
