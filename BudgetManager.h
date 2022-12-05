@@ -10,6 +10,7 @@
 #include "ExpenseFile.h"
 #include "IncomeFile.h"
 #include "SupportMethod.h"
+#include "DateManager.h"
 
 
 using namespace std;
@@ -19,7 +20,7 @@ class BudgetManager
     const int CURRENT_LOGEDIN_USER;
     //vector <Expense> expenses;
     vector <Income> incomes;
-
+    DateManager dateManager;
     IncomeFile incomeFile;
     //ExpenseFile expenseFile;
 

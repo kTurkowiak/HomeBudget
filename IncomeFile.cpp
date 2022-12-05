@@ -4,7 +4,6 @@ void IncomeFile::readLastIncomeId()
     {
     CMarkup xml;
     bool fileExists = xml.Load( "income.xml" );
-
     if (!fileExists)
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
@@ -22,6 +21,10 @@ void IncomeFile::readLastIncomeId()
         lastIncomeId = SupportMethod::convertStringToInt(xml.GetData());
         xml.OutOfElem();
     }
+    if (xml.FindElem("Income") == false)
+        {
+            lastIncomeId = 0;
+        }
     }
 
 int IncomeFile::getLastIncomeId()

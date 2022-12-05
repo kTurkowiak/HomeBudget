@@ -12,16 +12,48 @@ void BudgetManager::addNewIncome()
 Income BudgetManager::getNewIncomeData(int lastId)
 {
     Income income;
+    char choose;
     income.setUserId(CURRENT_LOGEDIN_USER);
     income.setCostId(lastId+1);
     float temporaryValue;
     string temporaryString;
-    bool dataCorrect = 1;
+    int temporaryInt;
+    bool dataCorrect = 0;
 
-    cout << "Podaj date: ";
-    //funkcja sprawdzajaca czy data dzisiejsza
-    //funkcja sprawdzajaca poprawnosc daty
-    income.setCostDate(20221205);
+    do{
+        cout << "Jaka date chcesz ustawic?" << endl;
+        cout << "1. Data dzisiejsza: " << dateManager.getTotalTodayDateAsString() << "?"<< endl;
+        cout << "2. Data wlasna" << endl;
+        choose = SupportMethod::loadChar();
+        switch (choose)
+        {
+            case '1':
+            {
+                temporaryInt = dateManager.getFullTodayDateAsOneNumber();
+                //funkcja sprawdzajaca czy data dzisiejsza
+                dataCorrect = 1;
+                break;
+            }
+            case '2':
+            {
+                cout << "Wprowadz date w formacie YYYY-MM-DD: ";
+                //funkcja sprawdzajaca poprawnosc daty
+                //temporaryInt =
+                break;
+            }
+            default:
+            {
+                cout << "Nie ma takiej opcji, wybierz ponownie. ";
+                dataCorrect = 0;
+            }
+        }
+
+
+
+
+    }while (dataCorrect != 1);
+    income.setCostDate(temporaryInt);
+
     cout << "Podaj nazwe przychodu: ";
     income.setCostItem(SupportMethod::loadLine());
     do
@@ -66,12 +98,14 @@ float BudgetManager::checkDataCorrectFloat (string number)
         }
         else
         {
+            cout << " Wprowadz poprawne dane. Z maksymalnymi dwoma miejscami po przecinku" <<endl;
             return -1;
         }
     }
     temporaryTwoInt = SupportMethod::convertStringToInt(temporaryTwo);
     if (temporaryTwoInt >=100)
     {
+        cout << " Wprowadz poprawne dane. Z maksymalnymi dwoma miejscami po przecinku" <<endl;
         return -1;
     }
     total = temporaryOne + '.' + temporaryTwo;
