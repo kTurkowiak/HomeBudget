@@ -44,3 +44,18 @@ int SupportMethod::convertStringToInt(string number)
 
     return numberInt;
 }
+
+static string SupportMethod::convertFloatToString (float number)
+{
+    ostringstream ss;
+    ss << number;
+    string s(ss.str());
+    return s;
+}
+
+static float SupportMethod::convertStringToFloat (string number)
+{
+    float floatNumber;
+    floatNumber = stof(number);
+    return floatNumber;
+}

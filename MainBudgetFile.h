@@ -3,6 +3,7 @@
 
 
 #include "Markup.h"
+#include "SupportMethod.h"
 
 using namespace std;
 

@@ -20,6 +20,12 @@ class BudgetManager
     //vector <Expense> expenses;
     vector <Income> incomes;
 
+    IncomeFile incomeFile;
+    //ExpenseFile expenseFile;
+
+    Income getNewIncomeData(int lastId);
+    float checkDataCorrectFloat (string number);
+
 
 public:
     BudgetManager (int currentLogInUser)
