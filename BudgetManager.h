@@ -26,6 +26,7 @@ class BudgetManager
 
     Income getNewIncomeData(int lastId);
     float checkDataCorrectFloat (string number);
+    int checkDataCorrectInt (string dataValid);
 
 
 public:

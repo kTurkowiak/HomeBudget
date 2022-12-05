@@ -30,6 +30,7 @@ DateManager ()
     int getTodayDay();
     string getTotalTodayDateAsString();
     int getFullTodayDateAsOneNumber();
+    bool isDateValid(int day, int month, int year);
 
 };
 

@@ -1,7 +1,7 @@
 #include "IncomeFile.h"
 
 void IncomeFile::readLastIncomeId()
-    {
+{
     CMarkup xml;
     bool fileExists = xml.Load( "income.xml" );
     if (!fileExists)
@@ -21,11 +21,14 @@ void IncomeFile::readLastIncomeId()
         lastIncomeId = SupportMethod::convertStringToInt(xml.GetData());
         xml.OutOfElem();
     }
+    xml.ResetPos();
+    xml.FindElem();
+    xml.IntoElem();
     if (xml.FindElem("Income") == false)
-        {
-            lastIncomeId = 0;
-        }
+    {
+        lastIncomeId = 0;
     }
+}
 
 int IncomeFile::getLastIncomeId()
 {
