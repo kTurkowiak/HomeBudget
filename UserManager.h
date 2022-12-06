@@ -12,11 +12,10 @@ using namespace std;
 
 class UserManager
 {
+
     vector <User> users;
     UserFile userFile;
     int currentLogInUser;
-
-
 
     User getNewUserData();
     int setIdForNewUser();
@@ -26,11 +25,11 @@ class UserManager
 
 
 public:
-    UserManager ()
+    UserManager (string userFileName)
+    : userFile(userFileName)
     {
         users = userFile.loadUsersFromFile();
         //showAllUser();                                   //do pozniejszego usuniecia
-
     }
     int getCurrentLogInUser();
 

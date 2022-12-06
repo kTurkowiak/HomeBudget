@@ -3,20 +3,30 @@
 void BudgetManager::addNewIncome()
 {
     Income income;
-    int lastId = incomeFile.getLastIncomeId();
-    income = getNewIncomeData(lastId);
+    int lastIncomeId = incomeFile.getLastIncomeId();
+    income = getNewIncomeData(lastIncomeId);
     incomeFile.addNewIncomeIntoFile(income);
-    incomeFile.setLastIncomeId(lastId+1);
+    incomeFile.setLastIncomeId(lastIncomeId+1);
     incomes.push_back(income);
 }
 
-Income BudgetManager::getNewIncomeData(int lastId)
+void BudgetManager::addNewExpense()
+{
+    Expense expense;
+    int lastExpenceId = expenseFile.getLastExpenseId();
+    expense = getNewExpenceData(lastExpenceId);
+    expenseFile.addNewExpenseIntoFile(expense);
+    expenseFile.setLastExpenseId(lastExpenceId+1);
+    expenses.push_back(expense);
+}
+
+Income BudgetManager::getNewIncomeData(int lastIncomeId)
 {
     system("cls");
     Income income;
     char choose;
     income.setUserId(CURRENT_LOGEDIN_USER);
-    income.setCostId(lastId+1);
+    income.setCostId(lastIncomeId+1);
     float temporaryFloat;
     string temporaryString;
     int temporaryInt;
@@ -81,6 +91,73 @@ Income BudgetManager::getNewIncomeData(int lastId)
 }
 
 
+Expense BudgetManager::getNewExpenceData(int lastExpeseId)
+{
+    system("cls");
+    Expense expense;
+    char choose;
+    expense.setUserId(CURRENT_LOGEDIN_USER);
+    expense.setCostId(lastExpeseId+1);
+    float temporaryFloat;
+    string temporaryString;
+    int temporaryInt;
+    bool dataCorrect = 0;
+
+    do{
+        cout << "Jaka date chcesz ustawic?" << endl <<endl;
+        cout << "1. Data dzisiejsza: " << dateManager.getTotalTodayDateAsString() << "?"<< endl;
+        cout << "2. Data wlasna" << endl;
+        cout << "---------------------------" << endl;
+        cout<< "Twoj wybor: ";
+        choose = SupportMethod::loadChar();
+        switch (choose)
+        {
+            case '1':
+            {
+                temporaryInt = dateManager.getFullTodayDateAsOneNumber();
+                dataCorrect = 1;
+                break;
+            }
+            case '2':
+            {
+                cout << "Wprowadz date w formacie YYYY.MM.DD: ";
+                temporaryString = SupportMethod::loadLine();
+                temporaryInt = checkDataCorrectInt(temporaryString);
+                dataCorrect = 1;
+                if (temporaryInt == -1)
+                {
+                    dataCorrect=0;
+                }
+                break;
+            }
+            default:
+            {
+                cout << "Nie ma takiej opcji, wybierz ponownie. ";
+                dataCorrect = 0;
+            }
+        }
+    }while (dataCorrect != 1);
+    expense.setCostDate(temporaryInt);
+
+    cout << "Podaj nazwe wydatku: ";
+    expense.setCostItem(SupportMethod::loadLine());
+    do
+    {
+        dataCorrect = 1;
+        cout << "Podaj wielkosc wydatku: " ;
+        temporaryString = (SupportMethod::loadLine());
+        temporaryFloat = BudgetManager::checkDataCorrectFloat(temporaryString);
+        if (temporaryFloat == -1)
+        {
+            dataCorrect=0;
+        }
+    } while (dataCorrect != 1);
+    expense.setCostAmount(temporaryFloat);
+
+    return expense;
+}
+
+
 float BudgetManager::checkDataCorrectFloat (string number)
 {
     int stringLength =  number.length();
@@ -137,7 +214,7 @@ int BudgetManager::checkDataCorrectInt (string number)
         {
             year = year + temporaryCharacter;
         }
-        else if ((temporaryCharacterInt == 44) ||(temporaryCharacterInt == 46)&& (dotOrComma == 0) && (dotOrComma2 == 0))
+        else if (((temporaryCharacterInt == 44) ||(temporaryCharacterInt == 46))&& ((dotOrComma == 0) && (dotOrComma2 == 0)))
         {
             dotOrComma = 1;
         }
@@ -145,7 +222,7 @@ int BudgetManager::checkDataCorrectInt (string number)
         {
             month = month + temporaryCharacter;
         }
-        else if ((temporaryCharacterInt == 44) ||(temporaryCharacterInt == 46)&& (dotOrComma == 1) && (dotOrComma2 == 0))
+        else if (((temporaryCharacterInt == 44) ||(temporaryCharacterInt == 46))&& ((dotOrComma == 1) && (dotOrComma2 == 0)))
         {
             dotOrComma2 = 1;
         }
@@ -218,6 +295,19 @@ void BudgetManager::showAllIncome() //do pozniejszego usuniecia
         cout << "Income Id: " << incomes[i].getCostId() << endl;
         cout << "Income date: " << incomes[i].getCostDate() << endl;
         cout << "Income title: " << incomes[i].getCostItem() << endl;
-        cout << "Income amount: " << incomes[i].getCostAmount() << endl;
+        cout << "Income amount: " << incomes[i].getCostAmount() << endl << endl;
+
+    }
+}
+
+void BudgetManager::showAllExpense()
+{
+        for (int i = 0; i <(int) expenses.size(); i++)
+    {
+        cout << "User Id: " << expenses[i].getUserId() << endl;
+        cout << "Expense Id: " << expenses[i].getCostId() << endl;
+        cout << "Expense date: " << expenses[i].getCostDate() << endl;
+        cout << "Expense title: " << expenses[i].getCostItem() << endl;
+        cout << "Expense amount: " << expenses[i].getCostAmount() << endl << endl;
     }
 }
