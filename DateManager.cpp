@@ -64,13 +64,13 @@ int DateManager::getFullTodayDateAsOneNumber()
 bool DateManager::isDateValid(int day, int month, int year)
 {
 
-    if(1000 <= year <= todayYear)
+    if((1000 <= year) && (year <= todayYear))
     {
-        if((month==1 || month==3 || month==5|| month==7|| month==8||month==10||month==12) && day>0 && day<=31)
+        if((month==1 || month==3 || month==5|| month==7|| month==8||month==10||month==12) && (day>0) && (day<=31))
         {
             return 1;
         }
-        else if(month==4 || month==6 || month==9|| month==11 && day>0 && day<=30)
+        else if(((month==4) || (month==6) || (month==9)|| (month==11)) && (day>0) && (day<=30))
         {
             return 1;
         }
