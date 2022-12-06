@@ -56,3 +56,44 @@ void IncomeFile::addNewIncomeIntoFile(Income income)
     xml.Save("income.xml");
 
 }
+
+
+vector <Income> IncomeFile::loadIncomeCurrentLogedUser(int currentLogInUser)
+{
+    CMarkup xml;
+    Income income;
+    vector <Income> incomes;
+    xml.Load( "income.xml" );
+    int temporaryUserIdFromFile;
+    bool fileExists = xml.Load( "income.xml" );
+    if (!fileExists)
+    {
+        return incomes;
+    }
+    xml.FindElem();
+    xml.IntoElem();
+    while (xml.FindElem("Income"))
+    {
+        xml.IntoElem();
+        xml.FindElem("UserId");
+        temporaryUserIdFromFile = SupportMethod::convertStringToInt(xml.GetData());
+        if (temporaryUserIdFromFile == currentLogInUser)
+        {
+            income.setUserId(temporaryUserIdFromFile);
+            xml.FindElem("IncomeId");
+            income.setCostId(SupportMethod::convertStringToInt(xml.GetData()));
+            xml.FindElem("IncomeDate");
+            income.setCostDate(SupportMethod::convertStringToInt(xml.GetData()));
+            xml.FindElem("IncomeItem");
+            income.setCostItem(xml.GetData());
+            xml.FindElem("IncomeAmount");               //odczytuje string i zaczytuje do float
+            income.setCostAmount(SupportMethod::convertStringToFloat(xml.GetData()));
+            incomes.push_back(income);
+        }
+        xml.OutOfElem();
+    }
+
+    return incomes;
+}
+
+

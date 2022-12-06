@@ -29,15 +29,19 @@ class BudgetManager
     int checkDataCorrectInt (string dataValid);
 
 
+
+
+
 public:
     BudgetManager (int currentLogInUser)
     : CURRENT_LOGEDIN_USER (currentLogInUser)
     {
         //expenses = expenseFile.
-        //incomes = incomeFile.
+        incomes = incomeFile.loadIncomeCurrentLogedUser(CURRENT_LOGEDIN_USER);
     }
 
     void addNewIncome();
+    void showAllIncome();                       //do pozniejszego usuniecia
 };
 
 

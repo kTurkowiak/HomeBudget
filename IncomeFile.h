@@ -15,6 +15,7 @@ class IncomeFile : public MainBudgetFile
 
     void readLastIncomeId();
 
+
 public:
     IncomeFile()
         {
@@ -23,6 +24,8 @@ public:
     int getLastIncomeId();
     void setLastIncomeId(int lastId);
     void addNewIncomeIntoFile(Income income);
+    vector <Income> loadIncomeCurrentLogedUser(int currentLogInUser);
+
 
 
 

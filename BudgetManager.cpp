@@ -7,6 +7,7 @@ void BudgetManager::addNewIncome()
     income = getNewIncomeData(lastId);
     incomeFile.addNewIncomeIntoFile(income);
     incomeFile.setLastIncomeId(lastId+1);
+    incomes.push_back(income);
 }
 
 Income BudgetManager::getNewIncomeData(int lastId)
@@ -207,4 +208,16 @@ int BudgetManager::checkDataCorrectInt (string number)
         return -1;
     }
     return -1;
+}
+
+void BudgetManager::showAllIncome() //do pozniejszego usuniecia
+{
+    for (int i = 0; i <(int) incomes.size(); i++)
+    {
+        cout << "User Id: " << incomes[i].getUserId() << endl;
+        cout << "Income Id: " << incomes[i].getCostId() << endl;
+        cout << "Income date: " << incomes[i].getCostDate() << endl;
+        cout << "Income title: " << incomes[i].getCostItem() << endl;
+        cout << "Income amount: " << incomes[i].getCostAmount() << endl;
+    }
 }

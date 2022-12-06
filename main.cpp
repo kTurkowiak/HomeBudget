@@ -50,7 +50,9 @@ int main()
                 //homeBudget.showBalanceForPreviousMonth();
                 break;
             case '5':
-                //homeBudget.showBalanceForChoosenMonth();
+                //homeBudget.showBalanceForChoosenMonth(); //bêdzie pozniej
+                //aktualnie Pokazuje wszystkie Income
+                homeBudget.showAllIncome();
                 break;
             case '6':
                 homeBudget.changePassword();
