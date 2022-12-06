@@ -18,13 +18,14 @@ using namespace std;
 class BudgetManager
 {
     const int CURRENT_LOGEDIN_USER;
-    //vector <Expense> expenses;
+    vector <Expense> expenses;
     vector <Income> incomes;
     DateManager dateManager;
     IncomeFile incomeFile;
-    //ExpenseFile expenseFile;
+    ExpenseFile expenseFile;
 
-    Income getNewIncomeData(int lastId);
+    Income getNewIncomeData(int lastIncomeId);
+    Expense getNewExpenceData(int lastExpeseId);
     float checkDataCorrectFloat (string number);
     int checkDataCorrectInt (string dataValid);
 
@@ -33,15 +34,19 @@ class BudgetManager
 
 
 public:
-    BudgetManager (int currentLogInUser)
-    : CURRENT_LOGEDIN_USER (currentLogInUser)
+    BudgetManager (int currentLogInUser, string incomeFileName, string expenseFileName)
+    : CURRENT_LOGEDIN_USER (currentLogInUser), incomeFile(incomeFileName), expenseFile(expenseFileName)
     {
+
         //expenses = expenseFile.
         incomes = incomeFile.loadIncomeCurrentLogedUser(CURRENT_LOGEDIN_USER);
+        //expenses = expenseFile.loadExpenseCurrentLogedUser (CURRENT_LOGEDIN_USER);
     }
 
     void addNewIncome();
+    void addNewExpense();
     void showAllIncome();                       //do pozniejszego usuniecia
+    void showAllExpense();
 };
 
 

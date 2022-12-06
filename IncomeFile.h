@@ -2,22 +2,20 @@
 #define INCOMEFILE_H
 
 #include "Income.h"
-
-
-
 #include "MainBudgetFile.h"
 
 using namespace std;
 
-class IncomeFile : public MainBudgetFile
+class IncomeFile
 {
+    const string FILE_NAME;
     int lastIncomeId;
 
     void readLastIncomeId();
 
-
 public:
-    IncomeFile()
+    IncomeFile(string incomeFileName)
+    : FILE_NAME(incomeFileName)
         {
             readLastIncomeId();
         }

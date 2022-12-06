@@ -3,13 +3,13 @@
 void IncomeFile::readLastIncomeId()
 {
     CMarkup xml;
-    bool fileExists = xml.Load( "income.xml" );
+    bool fileExists = xml.Load( FILE_NAME );
     if (!fileExists)
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Incomes");
         lastIncomeId = 0;
-        xml.Save("income.xml");
+        xml.Save(FILE_NAME);
         return;
     }
     xml.FindElem();
@@ -43,7 +43,7 @@ void IncomeFile::setLastIncomeId(int lastId)
 void IncomeFile::addNewIncomeIntoFile(Income income)
 {
     CMarkup xml;
-    xml.Load( "income.xml" );
+    xml.Load( FILE_NAME );
     xml.FindElem();
     xml.IntoElem();
     xml.AddElem("Income");
@@ -53,7 +53,7 @@ void IncomeFile::addNewIncomeIntoFile(Income income)
     xml.AddElem("IncomeDate", income.getCostDate());
     xml.AddElem("IncomeItem", income.getCostItem());
     xml.AddElem("IncomeAmount", SupportMethod::convertFloatToString(income.getCostAmount()));
-    xml.Save("income.xml");
+    xml.Save(FILE_NAME);
 
 }
 
@@ -63,9 +63,9 @@ vector <Income> IncomeFile::loadIncomeCurrentLogedUser(int currentLogInUser)
     CMarkup xml;
     Income income;
     vector <Income> incomes;
-    xml.Load( "income.xml" );
+    xml.Load( FILE_NAME );
     int temporaryUserIdFromFile;
-    bool fileExists = xml.Load( "income.xml" );
+    bool fileExists = xml.Load( FILE_NAME );
     if (!fileExists)
     {
         return incomes;
@@ -86,7 +86,7 @@ vector <Income> IncomeFile::loadIncomeCurrentLogedUser(int currentLogInUser)
             income.setCostDate(SupportMethod::convertStringToInt(xml.GetData()));
             xml.FindElem("IncomeItem");
             income.setCostItem(xml.GetData());
-            xml.FindElem("IncomeAmount");               //odczytuje string i zaczytuje do float
+            xml.FindElem("IncomeAmount");
             income.setCostAmount(SupportMethod::convertStringToFloat(xml.GetData()));
             incomes.push_back(income);
         }
