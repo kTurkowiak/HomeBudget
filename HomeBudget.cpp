@@ -45,11 +45,7 @@ void HomeBudget::userLogIn()
     userManager.userLogIn();
     if (userManager.didUserLogIn())
     {
-<<<<<<< HEAD
-        budgetManager = new BudgetManager(userManager.getCurrentLogInUser());
-=======
         budgetManager = new BudgetManager(userManager.getCurrentLogInUser(), INCOME_FILE_NAME ,EXPENSE_FILE_NAME );
->>>>>>> feature_creating-cost-class,inheritance-it-to-Income-and-Expense-classes
     }
 }
 
@@ -68,15 +64,11 @@ void HomeBudget::addNewIncome()
     budgetManager->addNewIncome();
 }
 
-<<<<<<< HEAD
-=======
 void HomeBudget::addNewExpense()
 {
     budgetManager->addNewExpense();
 }
 
-
->>>>>>> feature_creating-cost-class,inheritance-it-to-Income-and-Expense-classes
 void HomeBudget::changePassword()
 {
     userManager.changePassword();
@@ -84,13 +76,10 @@ void HomeBudget::changePassword()
 
 void HomeBudget::showAllIncome() //do pozniejszego usuniecia
 {
-<<<<<<< HEAD
-
     budgetManager->showAllIncome();
-=======
     cout<< "Pokazuje zapisane w wektorze Income"<< endl <<endl;
     budgetManager->showAllIncome();
     cout<< "Pokazuje zapisane w wektorze Expense"<< endl <<endl;
     budgetManager->showAllExpense();
->>>>>>> feature_creating-cost-class,inheritance-it-to-Income-and-Expense-classes
+
 }

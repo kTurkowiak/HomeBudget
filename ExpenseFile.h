@@ -2,7 +2,8 @@
 #define EXPENSEFILE_H
 
 #include "Expense.h"
-#include "MainBudgetFile.h"
+#include "Markup.h"
+#include "SupportMethod.h"
 
 using namespace std;
 

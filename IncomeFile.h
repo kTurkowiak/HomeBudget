@@ -2,7 +2,9 @@
 #define INCOMEFILE_H
 
 #include "Income.h"
-#include "MainBudgetFile.h"
+#include "Markup.h"
+#include "SupportMethod.h"
+
 
 using namespace std;
 
