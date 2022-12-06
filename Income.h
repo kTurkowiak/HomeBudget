@@ -1,9 +1,11 @@
 #ifndef INCOME_H
 #define INCOME_H
 
+#include "Cost.h"
+
 using namespace std;
 
-class Income
+class Income : public Cost
 {
 
 

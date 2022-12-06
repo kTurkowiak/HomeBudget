@@ -18,7 +18,8 @@ public:
    static string loadLine();
    static string convertIntToString(int number);
    static int convertStringToInt(string number);
-
+   static string convertFloatToString (float number);
+   static float convertStringToFloat (string number);
 
 };
 

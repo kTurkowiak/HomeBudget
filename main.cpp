@@ -7,10 +7,11 @@ using namespace std;
 
 int main()
 {
+    HomeBudget homeBudget;
     char menuChoose;
     while (true)
     {
-        HomeBudget homeBudget;
+
         if (!homeBudget.didUserLogIn())
         {
             menuChoose = homeBudget.userMenuChoose();
@@ -37,7 +38,7 @@ int main()
             switch (menuChoose)
             {
             case '1':
-                //homeBudget.addNewIncome();
+                homeBudget.addNewIncome();
                 break;
             case '2':
                 //homeBudget.addNewExpense();
@@ -49,10 +50,12 @@ int main()
                 //homeBudget.showBalanceForPreviousMonth();
                 break;
             case '5':
-                //homeBudget.showBalanceForChoosenMonth();
+                //homeBudget.showBalanceForChoosenMonth(); //bêdzie pozniej
+                //aktualnie Pokazuje wszystkie Income
+                homeBudget.showAllIncome();
                 break;
             case '6':
-                //homeBudget.changePassword();
+                homeBudget.changePassword();
                 break;
             case '7':
                 homeBudget.userLogOut();
