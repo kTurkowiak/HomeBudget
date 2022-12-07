@@ -32,8 +32,10 @@ public:
     void addNewIncome();
     void addNewExpense();
     void changePassword();
-    void showAllIncome();        //do pozniejszego usuniecia
-    void showAllExpense();       //do pozniejszego usuniecia
+    void showBalanceForCurrentMonth();
+    void showBalanceForPreviousMonth();
+    void showBalanceForChoosenPeriod();
+
 
     ~HomeBudget()
     {

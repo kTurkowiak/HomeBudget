@@ -3,7 +3,7 @@
 char HomeBudget::userMenuChoose()
 {
     char choose;
-    //system("cls");
+    system("cls");
     cout << "    >>> MENU  GLOWNE <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "1. Rejestracja" << endl;
@@ -18,7 +18,7 @@ char HomeBudget::userMenuChoose()
 char HomeBudget::mainMenuChoose()
 {
     char choose;
-    //system("cls");
+    system("cls");
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "1. Dodaj nowy przychod" << endl;
@@ -74,10 +74,18 @@ void HomeBudget::changePassword()
     userManager.changePassword();
 }
 
-void HomeBudget::showAllIncome() //do pozniejszego usuniecia
+void HomeBudget::showBalanceForCurrentMonth()
 {
-    cout<< "Pokazuje zapisane w wektorze Income"<< endl <<endl;
-    budgetManager->showAllIncome();
-    cout<< "Pokazuje zapisane w wektorze Expense"<< endl <<endl;
-    budgetManager->showAllExpense();
+    budgetManager->showBalanceForCurrentMonth();
 }
+
+void HomeBudget::showBalanceForPreviousMonth()
+{
+    budgetManager->showBalanceForPreviousMonth();
+}
+
+void HomeBudget::showBalanceForChoosenPeriod()
+{
+    budgetManager->showBalanceForChoosenPeriod();
+}
+

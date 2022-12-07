@@ -34,6 +34,7 @@ public:
     int getCostDate();
     string getCostItem();
     float getCostAmount();
+    friend class BudgetManager;
 };
 
 

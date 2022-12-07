@@ -41,15 +41,13 @@ int main()
                 homeBudget.addNewExpense();
                 break;
             case '3':
-                //homeBudget.showBalanceForCurrentMonth();
+                homeBudget.showBalanceForCurrentMonth();
                 break;
             case '4':
-                //homeBudget.showBalanceForPreviousMonth();
+                homeBudget.showBalanceForPreviousMonth();
                 break;
             case '5':
-                //homeBudget.showBalanceForChoosenMonth(); //bêdzie pozniej
-                //aktualnie Pokazuje wszystkie Income
-                homeBudget.showAllIncome();
+                homeBudget.showBalanceForChoosenPeriod();
                 break;
             case '6':
                 homeBudget.changePassword();

@@ -49,13 +49,13 @@ Income BudgetManager::getNewIncomeData(int lastIncomeId)
             }
             case '2':
             {
-                cout << "Wprowadz date w formacie YYYY.MM.DD: ";
+                cout << "Wprowadz date w formacie YYYY-MM-DD. Za separatory mozesz uzyc kropki, myslinika lub przecinka :";
                 temporaryString = SupportMethod::loadLine();
                 temporaryInt = checkDateCorrectInt(temporaryString);
                 dataCorrect = 1;
                 if (temporaryInt == -1)
                 {
-                    dataCorrect=0;
+                    dataCorrect = 0;
                 }
                 break;
             }
@@ -77,13 +77,12 @@ Income BudgetManager::getNewIncomeData(int lastIncomeId)
         temporaryFloat = BudgetManager::checkDataCorrectFloat(temporaryString);
         if (temporaryFloat == -1)
         {
-            dataCorrect=0;
+            dataCorrect = 0;
         }
     } while (dataCorrect != 1);
     income.setCostAmount(temporaryFloat);
     return income;
 }
-
 
 Expense BudgetManager::getNewExpenceData(int lastExpeseId)
 {
@@ -114,13 +113,13 @@ Expense BudgetManager::getNewExpenceData(int lastExpeseId)
             }
             case '2':
             {
-                cout << "Wprowadz date w formacie YYYY.MM.DD. Za separatory mozesz uzyc kropki, myslinika lub przecinka :";
+                cout << "Wprowadz date w formacie YYYY-MM-DD. Za separatory mozesz uzyc kropki, myslinika lub przecinka :";
                 temporaryString = SupportMethod::loadLine();
                 temporaryInt = checkDateCorrectInt(temporaryString);
                 dataCorrect = 1;
                 if (temporaryInt == -1)
                 {
-                    dataCorrect=0;
+                    dataCorrect = 0;
                 }
                 break;
             }
@@ -154,13 +153,12 @@ float BudgetManager::checkDataCorrectFloat (string number)
     int stringLength =  number.length();
     string zlotych, pennies, total;
     bool dotOrComma = 0;
-    int temporaryCharacterInt, penniesInt;
+    int penniesInt;
     for (int i = 0; i< stringLength; i++)
     {
         if ((isdigit(number[i]) == true) && (dotOrComma == 0))
         {
             zlotych = zlotych + number[i];
-            cout << "zlotych:" << zlotych << endl;
         }
         else if ((((int) number[i]) == 44) || ((int) number[i]) == 46)
         {
@@ -169,7 +167,6 @@ float BudgetManager::checkDataCorrectFloat (string number)
         else if ((isdigit(number[i]) == true) && (dotOrComma == 1))
         {
             pennies = pennies + number[i];;
-            cout << "pennies:" << pennies << endl;
         }
         else
         {
@@ -180,19 +177,18 @@ float BudgetManager::checkDataCorrectFloat (string number)
     penniesInt = SupportMethod::convertStringToInt(pennies);
     if (penniesInt >= 100)
     {
-        cout << " Wprowadz poprawne dane. Z maksymalnymi dwoma miejscami po przecinku" << endl;
+        cout << "Wprowadz poprawne dane. Z maksymalnymi dwoma miejscami po przecinku" << endl;
         return -1;
     }
     total = zlotych + '.' + pennies;
     return SupportMethod::convertStringToFloat(total);
 }
 
-
 int BudgetManager::checkDateCorrectInt (string number)
 {
     int stringLength =  number.length();
     string year, month, day, total;
-    int temporaryCharacterInt, yearInt, monthInt, dayInt, totalInt;
+    int yearInt, monthInt, dayInt, totalInt;
     bool dotOrCommaOrDash = 0;
     bool dotOrCommaOrDash2 = 0;
     for (int i = 0; i< stringLength; i++)
@@ -219,7 +215,7 @@ int BudgetManager::checkDateCorrectInt (string number)
         }
         else
         {
-            cout << " Wprowadz poprawne dane. Pamietaj, aby wstawiac kropki, przecinka, lub myslnika miedzy sekcje daty" << endl;
+            cout << "Wprowadz poprawne dane. Pamietaj, aby wstawiac kropki, przecinka, lub myslnika miedzy sekcje daty" << endl;
             return -1;
         }
     }
@@ -272,27 +268,149 @@ int BudgetManager::checkDateCorrectInt (string number)
     return -1;
 }
 
-
-void BudgetManager::showAllIncome() //do pozniejszego usuniecia
+void BudgetManager::sortingIncomeAndExpense()
 {
-    for (int i = 0; i <(int) incomes.size(); i++)
+    sort (incomes.begin(), incomes.end(), [](const Income &lower, const Income &higher)
     {
-        cout << "User Id: " << incomes[i].getUserId() << endl;
-        cout << "Income Id: " << incomes[i].getCostId() << endl;
-        cout << "Income date: " << incomes[i].getCostDate() << endl;
-        cout << "Income title: " << incomes[i].getCostItem() << endl;
-        cout << "Income amount: " << incomes[i].getCostAmount() << endl << endl;
-    }
+        return lower.costDate < higher.costDate;
+    });
+    sort (expenses.begin(), expenses.end(), [](const Expense &lower, const Expense &higher)
+    {
+        return lower.costDate < higher.costDate;
+    });
 }
 
-void BudgetManager::showAllExpense() //do pozniejszego usuniecia
+void BudgetManager::showBalanceForCurrentMonth()
 {
-    for (int i = 0; i <(int) expenses.size(); i++)
+    system("cls");
+    sortingIncomeAndExpense();
+    float totalSum = 0, incomeSum = 0, expenseSum = 0;
+    int fullTodayDateAsOneNumber = dateManager.getFullTodayDateAsOneNumber();
+    int firstDayOfCurrentMonth = dateManager.getFirstDayOfCurrentMonth();
+    cout << endl << "W tym miesiacu miales przychod" << endl;
+    for (int i = 0; i < (int) incomes.size(); i++)
     {
-        cout << "User Id: " << expenses[i].getUserId() << endl;
-        cout << "Expense Id: " << expenses[i].getCostId() << endl;
-        cout << "Expense date: " << expenses[i].getCostDate() << endl;
-        cout << "Expense title: " << expenses[i].getCostItem() << endl;
-        cout << "Expense amount: " << expenses[i].getCostAmount() << endl << endl;
+        if (((incomes[i].costDate) <= fullTodayDateAsOneNumber) && ((incomes[i].costDate) >= firstDayOfCurrentMonth))
+        {
+            cout << "Z tytulu: " << incomes[i].costItem << " Kwota: " << incomes[i].costAmount << "PLN" << endl;
+            incomeSum = incomeSum + incomes[i].costAmount;
+        }
     }
+    cout << "---------------------------" << endl;
+    cout << "Laczny przychod wyniosl: " << incomeSum << endl;
+    cout << endl <<"W tym miesiacu wydales" << endl;
+    for (int i = 0; i < (int) expenses.size(); i++)
+    {
+        if (((expenses[i].costDate) <= fullTodayDateAsOneNumber) && ((expenses[i].costDate) >= firstDayOfCurrentMonth))
+        {
+            cout << "Z tytulu: " << expenses[i].costItem << " Kwota: " << expenses[i].costAmount << "PLN" << endl;
+            expenseSum = expenseSum + expenses[i].costAmount;
+        }
+    }
+    cout << "---------------------------" << endl;
+    cout << "Laczne wydatki wyniosly: " << expenseSum << endl;
+    totalSum = incomeSum - expenseSum;
+    cout << "---------------------------" << endl;
+    cout << "Sumarycznie :" << totalSum << "PLN" <<endl << endl;
+    system("Pause");
+}
+
+void BudgetManager::showBalanceForPreviousMonth()
+{
+    system("cls");
+    sortingIncomeAndExpense();
+    float totalSum = 0 , incomeSum = 0, expenseSum = 0;
+    int fullDatePreviousMonthFirstDay = dateManager.getFirstDayOfPreviousMonth();
+    int firstDayOfCurrentMonth = dateManager.getFirstDayOfCurrentMonth();
+    cout << endl << "W poprzednim miesiacu miales przychod" << endl;
+    for (int i = 0; i < (int) incomes.size(); i++)
+    {
+        if (((incomes[i].costDate) <= (firstDayOfCurrentMonth - 1)) && ((incomes[i].costDate) >= fullDatePreviousMonthFirstDay))
+        {
+            cout << "Z tytulu: " << incomes[i].costItem << " Kwota: " << incomes[i].costAmount << "PLN" << endl;
+            incomeSum = incomeSum + incomes[i].costAmount;
+        }
+    }
+    cout << "---------------------------" << endl;
+    cout << "Laczny przychod wyniosl: " << incomeSum << endl;
+    cout << endl <<"W poprzednim miesiacu wydales" << endl;
+    for (int i = 0; i < (int) expenses.size(); i++)
+    {
+        if (((expenses[i].costDate) <= (firstDayOfCurrentMonth - 1)) && ((expenses[i].costDate) >= fullDatePreviousMonthFirstDay))
+        {
+            cout << "Z tytulu: " << expenses[i].costItem << " Kwota: " << expenses[i].costAmount << "PLN" << endl;
+            expenseSum = expenseSum + expenses[i].costAmount;
+        }
+    }
+    cout << "---------------------------" << endl;
+    cout << "Laczne wydatki wyniosly: " << expenseSum << endl;
+    totalSum = incomeSum - expenseSum;
+    cout << "---------------------------" << endl;
+    cout << "Sumarycznie :" << totalSum << "PLN" <<endl << endl;
+    system("Pause");
+}
+
+void BudgetManager::showBalanceForChoosenPeriod()
+{
+    system("cls");
+    sortingIncomeAndExpense();
+    float totalSum = 0 , incomeSum = 0, expenseSum = 0;
+    bool dateCorrect = 0;
+    string firstDateInput = "", secondDateInput = "";
+    int temporaryIntFirstDateInput = 0, temporaryIntSecondDateInput = 0, inverse = 0;
+    do
+    {
+        cout << "Wprowadz date OD kiedy pokazac podumowanie w formacie YYYY-MM-DD: " << endl;
+        firstDateInput = SupportMethod::loadLine();
+        temporaryIntFirstDateInput = checkDateCorrectInt(firstDateInput);
+        dateCorrect = 1;
+        if (temporaryIntFirstDateInput == -1)
+        {
+            dateCorrect = 0;
+        }
+    }while (dateCorrect != 1);
+    dateCorrect = 0;
+    do
+    {
+        cout << "Wprowadz date DO kiedy pokazac podumowanie w formacie YYYY-MM-DD: " << endl;
+        secondDateInput = SupportMethod::loadLine();
+        temporaryIntSecondDateInput = checkDateCorrectInt(secondDateInput);
+        dateCorrect = 1;
+        if (temporaryIntSecondDateInput == -1)
+        {
+            dateCorrect = 0;
+        }
+    }while (dateCorrect != 1);
+    if (temporaryIntFirstDateInput > temporaryIntSecondDateInput)  //in case of date reveresal
+    {
+        inverse = temporaryIntFirstDateInput;
+        temporaryIntFirstDateInput = temporaryIntSecondDateInput;
+        temporaryIntSecondDateInput = inverse;
+    }
+    cout << endl << "W wyznaczonym przedziale czasu miales przychod" << endl;
+    for (int i = 0; i < (int) incomes.size(); i++)
+    {
+        if (((incomes[i].costDate) <= (temporaryIntSecondDateInput)) && ((incomes[i].costDate) >= temporaryIntFirstDateInput))
+        {
+            cout << "Z tytulu: " << incomes[i].costItem << " Kwota: " << incomes[i].costAmount << "PLN" << endl;
+            incomeSum = incomeSum + incomes[i].costAmount;
+        }
+    }
+    cout << "---------------------------" << endl;
+    cout << "Laczny przychod wyniosl: " << incomeSum << endl;
+    cout << endl <<"W wyznaczonym przedziale czasu wydales" << endl;
+    for (int i = 0; i < (int) expenses.size(); i++)
+    {
+        if (((expenses[i].costDate) <= (temporaryIntSecondDateInput)) && ((expenses[i].costDate) >= temporaryIntFirstDateInput))
+        {
+            cout << "Z tytulu: " << expenses[i].costItem << " Kwota: " << expenses[i].costAmount << "PLN" << endl;
+            expenseSum = expenseSum + expenses[i].costAmount;
+        }
+    }
+    cout << "---------------------------" << endl;
+    cout << "Laczne wydatki wyniosly: " << expenseSum << endl;
+    totalSum = incomeSum - expenseSum;
+    cout << "---------------------------" << endl;
+    cout << "Sumarycznie :" << totalSum << "PLN" <<endl << endl;
+    system("Pause");
 }

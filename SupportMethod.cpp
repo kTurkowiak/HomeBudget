@@ -3,7 +3,7 @@
 char SupportMethod::loadChar()
 {
     string input = "";
-    char character  = {0};
+    char character = {0};
     while (true)
     {
         cin.sync();

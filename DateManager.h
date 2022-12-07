@@ -28,6 +28,8 @@ public:
     string getTotalTodayDateAsString();
     int getFullTodayDateAsOneNumber();
     bool isDateValid(int day, int month, int year);
+    int getFirstDayOfCurrentMonth();
+    int getFirstDayOfPreviousMonth();
 
 };
 

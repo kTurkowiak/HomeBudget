@@ -56,7 +56,6 @@ void ExpenseFile::addNewExpenseIntoFile(Expense expense)
     xml.Save(FILE_NAME);
 }
 
-
 vector <Expense> ExpenseFile::loadExpenseCurrentLogedUser(int currentLogInUser)
 {
     CMarkup xml;

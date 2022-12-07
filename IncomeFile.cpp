@@ -54,9 +54,7 @@ void IncomeFile::addNewIncomeIntoFile(Income income)
     xml.AddElem("IncomeItem", income.getCostItem());
     xml.AddElem("IncomeAmount", SupportMethod::convertFloatToString(income.getCostAmount()));
     xml.Save(FILE_NAME);
-
 }
-
 
 vector <Income> IncomeFile::loadIncomeCurrentLogedUser(int currentLogInUser)
 {

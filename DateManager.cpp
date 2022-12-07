@@ -28,8 +28,8 @@ string DateManager::getTotalTodayDateAsString()
 {
     string temporaryDate;
     temporaryDate = SupportMethod::convertIntToString (todayYear);
-    temporaryDate = temporaryDate + '.' + SupportMethod::convertIntToString (todayMonth);
-    temporaryDate = temporaryDate + '.' + SupportMethod::convertIntToString (todayDay);
+    temporaryDate = temporaryDate + '-' + SupportMethod::convertIntToString (todayMonth);
+    temporaryDate = temporaryDate + '-' + SupportMethod::convertIntToString (todayDay);
     return temporaryDate;
 }
 
@@ -98,5 +98,46 @@ bool DateManager::isDateValid(int day, int month, int year)
         }
     }
     return false;
+}
+
+int DateManager::getFirstDayOfCurrentMonth()
+{
+    int firstDayOfCurrentMonth = 0;
+    string temporaryDate ="";
+    temporaryDate = SupportMethod::convertIntToString (todayYear);
+    if (todayMonth <10)
+    {
+        temporaryDate = temporaryDate + '0' + SupportMethod::convertIntToString (todayMonth);
+    }
+    else
+    {
+        temporaryDate = temporaryDate + SupportMethod::convertIntToString (todayMonth);
+    }
+    temporaryDate = temporaryDate + ('0') + SupportMethod::convertIntToString (1);
+    firstDayOfCurrentMonth = SupportMethod::convertStringToInt(temporaryDate);
+    return firstDayOfCurrentMonth;
+}
+
+int DateManager::getFirstDayOfPreviousMonth()
+{
+    int firstDayOfPreviousMonth = 0, previousMonth = 0;
+    string temporaryDate ="";
+    temporaryDate = SupportMethod::convertIntToString (todayYear);
+    if ((todayMonth < 11) && (todayMonth > 1))
+    {
+        previousMonth = todayMonth - 1;
+        temporaryDate = temporaryDate + '0' + SupportMethod::convertIntToString (previousMonth);
+    }
+    else if (todayMonth >= 11)
+    {
+        temporaryDate = temporaryDate + SupportMethod::convertIntToString (todayMonth-1);
+    }
+    else
+    {
+        temporaryDate = SupportMethod::convertIntToString (todayYear-1) + SupportMethod::convertIntToString (12);
+    }
+    temporaryDate = temporaryDate + ('0') + SupportMethod::convertIntToString (1);
+    firstDayOfPreviousMonth = SupportMethod::convertStringToInt(temporaryDate);
+    return firstDayOfPreviousMonth;
 }
 
