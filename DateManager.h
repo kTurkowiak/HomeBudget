@@ -7,8 +7,6 @@
 
 #include "SupportMethod.h"
 
-
-
 using namespace std;
 
 class DateManager
@@ -20,11 +18,10 @@ class DateManager
     void setTodayDate();
 
 public:
-DateManager ()
+    DateManager ()
     {
         setTodayDate();
     };
-
     int getTodayYear();
     int getTodayMonth();
     int getTodayDay();

@@ -17,15 +17,13 @@ class ExpenseFile
 public:
     ExpenseFile(string expenseFileName)
     :FILE_NAME(expenseFileName)
-        {
-            readLastExpenseId();
-        }
+    {
+        readLastExpenseId();
+    };
     int getLastExpenseId();
     void setLastExpenseId(int lastId);
     void addNewExpenseIntoFile(Expense expense);
     vector <Expense> loadExpenseCurrentLogedUser(int currentLogInUser);
-
-
 };
 
 

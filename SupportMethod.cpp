@@ -4,7 +4,6 @@ char SupportMethod::loadChar()
 {
     string input = "";
     char character  = {0};
-
     while (true)
     {
         cin.sync();
@@ -18,7 +17,6 @@ char SupportMethod::loadChar()
     }
     return character;
 }
-
 
 string SupportMethod::loadLine()
 {
@@ -41,11 +39,10 @@ int SupportMethod::convertStringToInt(string number)
     int numberInt;
     istringstream iss(number);
     iss >> numberInt;
-
     return numberInt;
 }
 
-static string SupportMethod::convertFloatToString (float number)
+string SupportMethod::convertFloatToString (float number)
 {
     ostringstream ss;
     ss << number;
@@ -53,7 +50,7 @@ static string SupportMethod::convertFloatToString (float number)
     return s;
 }
 
-static float SupportMethod::convertStringToFloat (string number)
+float SupportMethod::convertStringToFloat (string number)
 {
     float floatNumber;
     floatNumber = stof(number);

@@ -14,18 +14,15 @@ class HomeBudget
 {
     UserManager userManager;
     BudgetManager *budgetManager;
-
     const string INCOME_FILE_NAME;
     const string EXPENSE_FILE_NAME;
-
-
 
 public:
     HomeBudget(string userFileName, string incomeFileName, string expenseFileName)
     :userManager(userFileName),INCOME_FILE_NAME(incomeFileName), EXPENSE_FILE_NAME(expenseFileName)
     {
      budgetManager = NULL;
-    }
+    };
     char userMenuChoose();
     char mainMenuChoose();
     void userRegistration();
@@ -35,16 +32,14 @@ public:
     void addNewIncome();
     void addNewExpense();
     void changePassword();
-    void showAllIncome(); //do pozniejszego usuniecia
-    void showAllExpense();
+    void showAllIncome();        //do pozniejszego usuniecia
+    void showAllExpense();       //do pozniejszego usuniecia
 
     ~HomeBudget()
     {
         delete budgetManager;
         budgetManager = NULL;
-    }
-
-
+    };
 };
 
 

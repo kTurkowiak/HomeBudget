@@ -5,7 +5,6 @@
 #include "Markup.h"
 #include "SupportMethod.h"
 
-
 using namespace std;
 
 class IncomeFile
@@ -17,16 +16,14 @@ class IncomeFile
 
 public:
     IncomeFile(string incomeFileName)
-    : FILE_NAME(incomeFileName)
-        {
-            readLastIncomeId();
-        }
+    :FILE_NAME(incomeFileName)
+    {
+        readLastIncomeId();
+    };
     int getLastIncomeId();
     void setLastIncomeId(int lastId);
     void addNewIncomeIntoFile(Income income);
     vector <Income> loadIncomeCurrentLogedUser(int currentLogInUser);
-
-
 
 
 };

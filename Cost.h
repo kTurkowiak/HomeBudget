@@ -14,12 +14,11 @@ class Cost
     string costItem;
     float costAmount;
 
-
 public:
     Cost (int userId = 0, int costId = 0, int costDate = 0, string costItem = "",  float costAmount = 0)
     {
         this -> userId = userId;
-        this -> costId = costId;      //sprawdzic czy trzeba przeniesc do Income i Expense
+        this -> costId = costId;
         this -> costDate = costDate;
         this -> costItem = costItem;
         this -> costAmount = costAmount;

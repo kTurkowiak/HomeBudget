@@ -20,25 +20,20 @@ class UserManager
     User getNewUserData();
     int setIdForNewUser();
     bool didLoginExist(string login);
-    void showAllUser();
-
-
 
 public:
     UserManager (string userFileName)
-    : userFile(userFileName)
+    :userFile(userFileName)
     {
         users = userFile.loadUsersFromFile();
-        //showAllUser();                                   //do pozniejszego usuniecia
-    }
-    int getCurrentLogInUser();
 
+    };
+    int getCurrentLogInUser();
     void userRegistration();
     void userLogIn();
     void changePassword();
     void userLogOut();
     bool didUserLogIn();
-
 
 };
 

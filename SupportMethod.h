@@ -5,13 +5,10 @@
 #include <string>
 #include <sstream>
 
-
 using namespace std;
 
 class SupportMethod
 {
-
-
 
 public:
    static char loadChar();

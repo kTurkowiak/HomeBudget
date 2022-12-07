@@ -2,7 +2,7 @@
 
     void User::setUserId(int newId)
     {
-        if (newId>=1)
+        if (newId >= 1)
         {
             userId = newId;
         }

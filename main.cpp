@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 #include "HomeBudget.h"
 
 using namespace std;
@@ -11,7 +10,6 @@ int main()
     char menuChoose;
     while (true)
     {
-
         if (!homeBudget.didUserLogIn())
         {
             menuChoose = homeBudget.userMenuChoose();
@@ -31,7 +29,6 @@ int main()
                 break;
             }
         }
-
         else
         {
             menuChoose = homeBudget.mainMenuChoose();

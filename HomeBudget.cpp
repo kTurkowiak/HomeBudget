@@ -45,7 +45,7 @@ void HomeBudget::userLogIn()
     userManager.userLogIn();
     if (userManager.didUserLogIn())
     {
-        budgetManager = new BudgetManager(userManager.getCurrentLogInUser(), INCOME_FILE_NAME ,EXPENSE_FILE_NAME );
+        budgetManager = new BudgetManager(userManager.getCurrentLogInUser(), INCOME_FILE_NAME ,EXPENSE_FILE_NAME);
     }
 }
 
@@ -76,10 +76,8 @@ void HomeBudget::changePassword()
 
 void HomeBudget::showAllIncome() //do pozniejszego usuniecia
 {
-    budgetManager->showAllIncome();
     cout<< "Pokazuje zapisane w wektorze Income"<< endl <<endl;
     budgetManager->showAllIncome();
     cout<< "Pokazuje zapisane w wektorze Expense"<< endl <<endl;
     budgetManager->showAllExpense();
-
 }

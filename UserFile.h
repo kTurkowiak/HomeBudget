@@ -8,24 +8,21 @@
 #include "User.h"
 #include "SupportMethod.h"
 
-
 using namespace std;
 
 class UserFile
 {
     const string USER_FILE_NAME;
 
-
 public:
     UserFile(string userFileName)
-    : USER_FILE_NAME(userFileName)
+    :USER_FILE_NAME(userFileName)
     {
 
-    }
+    };
     void saveNewUserIntoFile(User user);
-    vector <User> loadUsersFromFile();              //do usuniecie cout'ow
-    void saveAllUserPassword(vector <User> users); //do usuniecie cout'ow
-
+    vector <User> loadUsersFromFile();
+    void saveAllUserPassword(vector <User> users);
 
 };
 

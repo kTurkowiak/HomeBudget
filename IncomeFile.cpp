@@ -3,7 +3,7 @@
 void IncomeFile::readLastIncomeId()
 {
     CMarkup xml;
-    bool fileExists = xml.Load( FILE_NAME );
+    bool fileExists = xml.Load(FILE_NAME);
     if (!fileExists)
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
@@ -43,7 +43,7 @@ void IncomeFile::setLastIncomeId(int lastId)
 void IncomeFile::addNewIncomeIntoFile(Income income)
 {
     CMarkup xml;
-    xml.Load( FILE_NAME );
+    xml.Load(FILE_NAME);
     xml.FindElem();
     xml.IntoElem();
     xml.AddElem("Income");
@@ -63,9 +63,9 @@ vector <Income> IncomeFile::loadIncomeCurrentLogedUser(int currentLogInUser)
     CMarkup xml;
     Income income;
     vector <Income> incomes;
-    xml.Load( FILE_NAME );
+    xml.Load(FILE_NAME);
     int temporaryUserIdFromFile;
-    bool fileExists = xml.Load( FILE_NAME );
+    bool fileExists = xml.Load(FILE_NAME);
     if (!fileExists)
     {
         return incomes;
@@ -92,7 +92,6 @@ vector <Income> IncomeFile::loadIncomeCurrentLogedUser(int currentLogInUser)
         }
         xml.OutOfElem();
     }
-
     return incomes;
 }
 

@@ -49,18 +49,6 @@ bool UserManager::didLoginExist(string login)
     return false;
 }
 
-void UserManager::showAllUser() //do pozniejszego usuniecia
-{
-    for (int i = 0; i <(int) users.size(); i++)
-    {
-        cout << "User ID: " << users[i].getUserId() << endl;
-        cout << "User login: " << users[i].getUserLogin() << endl;
-        cout << "User haslo: " << users[i].getUserPassword() << endl;
-        cout << "User Imie: " << users[i].getUserName() << endl;
-        cout << "User Nazwisko: " << users[i].getUserSurname() << endl;
-    }
-}
-
 void UserManager::userLogIn()
 {
     User user;

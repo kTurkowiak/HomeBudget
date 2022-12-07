@@ -22,7 +22,6 @@ public:
         this -> userName = userName;
         this -> userSurname = userSurname;
     };
-
     void setUserId(int newId);
     void setUserLogin(string newLogin);
     void setUserPassword(string newUserPassword);

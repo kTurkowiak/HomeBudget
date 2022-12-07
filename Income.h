@@ -8,10 +8,7 @@ using namespace std;
 class Income : public Cost
 {
 
-
-
 public:
-
 
 
 };

@@ -3,7 +3,7 @@
 void UserFile::saveNewUserIntoFile(User user)
 {
     CMarkup xml;
-    bool fileExists = xml.Load( "users.xml" );
+    bool fileExists = xml.Load("users.xml");
     if (!fileExists)
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
@@ -55,20 +55,19 @@ vector <User> UserFile::loadUsersFromFile()
 
 void UserFile::saveAllUserPassword(vector <User> users)
 {
-
     CMarkup xml;
-    bool fileExists = xml.Load( "users.xml" );
+    bool fileExists = xml.Load("users.xml");
     xml.FindElem();
     xml.IntoElem();
     int checkedUserId;
-        for (vector <User>:: iterator itr = users.begin(); itr!=users.end(); itr++)
-        {
-            xml.FindElem("User");
-            xml.IntoElem();
-            xml.FindElem("Password");
-            xml.SetData(itr ->getUserPassword());
-            xml.OutOfElem();
-        }
-        xml.Save("users.xml");
+    for (vector <User>:: iterator itr = users.begin(); itr!=users.end(); itr++)
+    {
+        xml.FindElem("User");
+        xml.IntoElem();
+        xml.FindElem("Password");
+        xml.SetData(itr ->getUserPassword());
+        xml.OutOfElem();
+    }
+    xml.Save("users.xml");
 
 }

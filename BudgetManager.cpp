@@ -6,7 +6,7 @@ void BudgetManager::addNewIncome()
     int lastIncomeId = incomeFile.getLastIncomeId();
     income = getNewIncomeData(lastIncomeId);
     incomeFile.addNewIncomeIntoFile(income);
-    incomeFile.setLastIncomeId(lastIncomeId+1);
+    incomeFile.setLastIncomeId(lastIncomeId + 1);
     incomes.push_back(income);
 }
 
@@ -16,7 +16,7 @@ void BudgetManager::addNewExpense()
     int lastExpenceId = expenseFile.getLastExpenseId();
     expense = getNewExpenceData(lastExpenceId);
     expenseFile.addNewExpenseIntoFile(expense);
-    expenseFile.setLastExpenseId(lastExpenceId+1);
+    expenseFile.setLastExpenseId(lastExpenceId + 1);
     expenses.push_back(expense);
 }
 
@@ -26,18 +26,18 @@ Income BudgetManager::getNewIncomeData(int lastIncomeId)
     Income income;
     char choose;
     income.setUserId(CURRENT_LOGEDIN_USER);
-    income.setCostId(lastIncomeId+1);
+    income.setCostId(lastIncomeId + 1);
     float temporaryFloat;
     string temporaryString;
     int temporaryInt;
     bool dataCorrect = 0;
-
-    do{
+    do
+    {
         cout << "Jaka date chcesz ustawic?" << endl <<endl;
-        cout << "1. Data dzisiejsza: " << dateManager.getTotalTodayDateAsString() << "?"<< endl;
+        cout << "1. Data dzisiejsza: " << dateManager.getTotalTodayDateAsString() << "?" << endl;
         cout << "2. Data wlasna" << endl;
         cout << "---------------------------" << endl;
-        cout<< "Twoj wybor: ";
+        cout << "Twoj wybor: ";
         choose = SupportMethod::loadChar();
         switch (choose)
         {
@@ -51,7 +51,7 @@ Income BudgetManager::getNewIncomeData(int lastIncomeId)
             {
                 cout << "Wprowadz date w formacie YYYY.MM.DD: ";
                 temporaryString = SupportMethod::loadLine();
-                temporaryInt = checkDataCorrectInt(temporaryString);
+                temporaryInt = checkDateCorrectInt(temporaryString);
                 dataCorrect = 1;
                 if (temporaryInt == -1)
                 {
@@ -65,13 +65,8 @@ Income BudgetManager::getNewIncomeData(int lastIncomeId)
                 dataCorrect = 0;
             }
         }
-
-
-
-
     }while (dataCorrect != 1);
     income.setCostDate(temporaryInt);
-
     cout << "Podaj nazwe przychodu: ";
     income.setCostItem(SupportMethod::loadLine());
     do
@@ -86,7 +81,6 @@ Income BudgetManager::getNewIncomeData(int lastIncomeId)
         }
     } while (dataCorrect != 1);
     income.setCostAmount(temporaryFloat);
-
     return income;
 }
 
@@ -97,15 +91,15 @@ Expense BudgetManager::getNewExpenceData(int lastExpeseId)
     Expense expense;
     char choose;
     expense.setUserId(CURRENT_LOGEDIN_USER);
-    expense.setCostId(lastExpeseId+1);
+    expense.setCostId(lastExpeseId + 1);
     float temporaryFloat;
     string temporaryString;
     int temporaryInt;
     bool dataCorrect = 0;
-
-    do{
+    do
+    {
         cout << "Jaka date chcesz ustawic?" << endl <<endl;
-        cout << "1. Data dzisiejsza: " << dateManager.getTotalTodayDateAsString() << "?"<< endl;
+        cout << "1. Data dzisiejsza: " << dateManager.getTotalTodayDateAsString() << "?" << endl;
         cout << "2. Data wlasna" << endl;
         cout << "---------------------------" << endl;
         cout<< "Twoj wybor: ";
@@ -120,9 +114,9 @@ Expense BudgetManager::getNewExpenceData(int lastExpeseId)
             }
             case '2':
             {
-                cout << "Wprowadz date w formacie YYYY.MM.DD: ";
+                cout << "Wprowadz date w formacie YYYY.MM.DD. Za separatory mozesz uzyc kropki, myslinika lub przecinka :";
                 temporaryString = SupportMethod::loadLine();
-                temporaryInt = checkDataCorrectInt(temporaryString);
+                temporaryInt = checkDateCorrectInt(temporaryString);
                 dataCorrect = 1;
                 if (temporaryInt == -1)
                 {
@@ -138,7 +132,6 @@ Expense BudgetManager::getNewExpenceData(int lastExpeseId)
         }
     }while (dataCorrect != 1);
     expense.setCostDate(temporaryInt);
-
     cout << "Podaj nazwe wydatku: ";
     expense.setCostItem(SupportMethod::loadLine());
     do
@@ -149,48 +142,45 @@ Expense BudgetManager::getNewExpenceData(int lastExpeseId)
         temporaryFloat = BudgetManager::checkDataCorrectFloat(temporaryString);
         if (temporaryFloat == -1)
         {
-            dataCorrect=0;
+            dataCorrect = 0;
         }
     } while (dataCorrect != 1);
     expense.setCostAmount(temporaryFloat);
-
     return expense;
 }
-
 
 float BudgetManager::checkDataCorrectFloat (string number)
 {
     int stringLength =  number.length();
     string zlotych, pennies, total;
-    char temporaryCharacter;
-    int temporaryCharacterInt, penniesInt;
     bool dotOrComma = 0;
+    int temporaryCharacterInt, penniesInt;
     for (int i = 0; i< stringLength; i++)
     {
-        temporaryCharacter = number[i];
-        temporaryCharacterInt = (int) temporaryCharacter;
-        if ((temporaryCharacterInt>=48) && (temporaryCharacterInt <=57) && (dotOrComma == 0))
+        if ((isdigit(number[i]) == true) && (dotOrComma == 0))
         {
-            zlotych = zlotych + temporaryCharacter;
+            zlotych = zlotych + number[i];
+            cout << "zlotych:" << zlotych << endl;
         }
-        else if ((temporaryCharacterInt == 44) ||(temporaryCharacterInt == 46))
+        else if ((((int) number[i]) == 44) || ((int) number[i]) == 46)
         {
             dotOrComma = 1;
         }
-        else if ((temporaryCharacterInt>=48) && (temporaryCharacterInt <=57) && (dotOrComma == 1))
+        else if ((isdigit(number[i]) == true) && (dotOrComma == 1))
         {
-            pennies = pennies + temporaryCharacter;
+            pennies = pennies + number[i];;
+            cout << "pennies:" << pennies << endl;
         }
         else
         {
-            cout << " Wprowadz poprawne dane. Z maksymalnymi dwoma miejscami po przecinku" <<endl;
+            cout << " Wprowadz poprawne dane. Z maksymalnymi dwoma miejscami po przecinku" << endl;
             return -1;
         }
     }
     penniesInt = SupportMethod::convertStringToInt(pennies);
-    if (penniesInt >=100)
+    if (penniesInt >= 100)
     {
-        cout << " Wprowadz poprawne dane. Z maksymalnymi dwoma miejscami po przecinku" <<endl;
+        cout << " Wprowadz poprawne dane. Z maksymalnymi dwoma miejscami po przecinku" << endl;
         return -1;
     }
     total = zlotych + '.' + pennies;
@@ -198,64 +188,59 @@ float BudgetManager::checkDataCorrectFloat (string number)
 }
 
 
-int BudgetManager::checkDataCorrectInt (string number)
+int BudgetManager::checkDateCorrectInt (string number)
 {
     int stringLength =  number.length();
     string year, month, day, total;
-    char temporaryCharacter;
     int temporaryCharacterInt, yearInt, monthInt, dayInt, totalInt;
-    bool dotOrComma = 0;
-    bool dotOrComma2 = 0;
+    bool dotOrCommaOrDash = 0;
+    bool dotOrCommaOrDash2 = 0;
     for (int i = 0; i< stringLength; i++)
     {
-        temporaryCharacter = number[i];
-        temporaryCharacterInt = (int) temporaryCharacter;
-        if ((temporaryCharacterInt>=48) && (temporaryCharacterInt <=57) && (dotOrComma == 0) && (dotOrComma2 == 0))
+        if (((isdigit(number[i])) == true) && (dotOrCommaOrDash == 0) && (dotOrCommaOrDash2 == 0))
         {
-            year = year + temporaryCharacter;
+            year = year + number[i];
         }
-        else if (((temporaryCharacterInt == 44) ||(temporaryCharacterInt == 46))&& ((dotOrComma == 0) && (dotOrComma2 == 0)))
+        else if ((((((int) number[i]) >= 44) || ((int) number[i]) <= 47)) && ((dotOrCommaOrDash == 0) && (dotOrCommaOrDash2 == 0)))
         {
-            dotOrComma = 1;
+            dotOrCommaOrDash = 1;
         }
-        else if ((temporaryCharacterInt>=48) && (temporaryCharacterInt <=57) && (dotOrComma == 1)&& (dotOrComma2 == 0))
+        else if (((isdigit(number[i])) == true) && (dotOrCommaOrDash == 1)&& (dotOrCommaOrDash2 == 0))
         {
-            month = month + temporaryCharacter;
+            month = month + number[i];
         }
-        else if (((temporaryCharacterInt == 44) ||(temporaryCharacterInt == 46))&& ((dotOrComma == 1) && (dotOrComma2 == 0)))
+        else if ((((((int) number[i]) >= 44) || ((int) number[i]) <= 47)) && ((dotOrCommaOrDash == 1) && (dotOrCommaOrDash2 == 0)))
         {
-            dotOrComma2 = 1;
+            dotOrCommaOrDash2 = 1;
         }
-        else if ((temporaryCharacterInt>=48) && (temporaryCharacterInt <=57) && (dotOrComma == 1)&& (dotOrComma2 == 1))
+        else if (((isdigit(number[i])) == true) && (dotOrCommaOrDash == 1)&& (dotOrCommaOrDash2 == 1))
         {
-            day = day + temporaryCharacter;
+            day = day + number[i];
         }
         else
         {
-            cout << " Wprowadz poprawne dane. Pamietaj, aby wstawiac kropki miedzy sekcje daty" <<endl;
+            cout << " Wprowadz poprawne dane. Pamietaj, aby wstawiac kropki, przecinka, lub myslnika miedzy sekcje daty" << endl;
             return -1;
         }
     }
     yearInt = SupportMethod::convertStringToInt(year);
     monthInt = SupportMethod::convertStringToInt(month);
     dayInt = SupportMethod::convertStringToInt(day);
-
     if ((yearInt <=1000) || (yearInt > dateManager.getTodayYear()))
     {
-        cout << "Wprowadz poprawne dane. Nie mozesz podac daty przekraczajaca dzisiejsza, lub ponizej roku 1000" <<endl;
+        cout << "Wprowadz poprawne dane. Nie mozesz podac daty przekraczajaca dzisiejsza, lub ponizej roku 1000" << endl;
         return -1;
     }
     if ((monthInt > 12) || (monthInt < 0))
     {
-        cout << "Wprowadz poprawne dane. Rok ma tylko dwanascie miesiecy" <<endl;
+        cout << "Wprowadz poprawne dane. Rok ma tylko dwanascie miesiecy" << endl;
         return -1;
     }
     if (dateManager.isDateValid(dayInt, monthInt, yearInt)==false)
     {
-        cout << "Wprowadz poprawne dane. Wybrany miesiac nie ma tyle dni" <<endl;
+        cout << "Wprowadz poprawne dane. Wybrany miesiac nie ma tyle dni" << endl;
         return -1;
     }
-
     year = SupportMethod::convertIntToString(yearInt);
     if (monthInt<10)
     {
@@ -281,11 +266,12 @@ int BudgetManager::checkDataCorrectInt (string number)
     }
     else
     {
-        cout << "Nie mozesz wprowadzic daty wiekszej niz dzisiejsza" <<endl; //cos nie dziala
+        cout << "Nie mozesz wprowadzic daty wiekszej niz dzisiejsza" <<endl;
         return -1;
     }
     return -1;
 }
+
 
 void BudgetManager::showAllIncome() //do pozniejszego usuniecia
 {
@@ -296,13 +282,12 @@ void BudgetManager::showAllIncome() //do pozniejszego usuniecia
         cout << "Income date: " << incomes[i].getCostDate() << endl;
         cout << "Income title: " << incomes[i].getCostItem() << endl;
         cout << "Income amount: " << incomes[i].getCostAmount() << endl << endl;
-
     }
 }
 
-void BudgetManager::showAllExpense()
+void BudgetManager::showAllExpense() //do pozniejszego usuniecia
 {
-        for (int i = 0; i <(int) expenses.size(); i++)
+    for (int i = 0; i <(int) expenses.size(); i++)
     {
         cout << "User Id: " << expenses[i].getUserId() << endl;
         cout << "Expense Id: " << expenses[i].getCostId() << endl;

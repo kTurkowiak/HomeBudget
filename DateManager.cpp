@@ -7,7 +7,6 @@ void DateManager::setTodayDate()
     todayYear = 1900 + ltm->tm_year;
     todayMonth = 1 + ltm->tm_mon;
     todayDay = ltm->tm_mday;
-
 }
 
 int DateManager::getTodayYear()
@@ -29,8 +28,8 @@ string DateManager::getTotalTodayDateAsString()
 {
     string temporaryDate;
     temporaryDate = SupportMethod::convertIntToString (todayYear);
-    temporaryDate = temporaryDate + '.' +SupportMethod::convertIntToString (todayMonth);
-    temporaryDate = temporaryDate + '.' +SupportMethod::convertIntToString (todayDay);
+    temporaryDate = temporaryDate + '.' + SupportMethod::convertIntToString (todayMonth);
+    temporaryDate = temporaryDate + '.' + SupportMethod::convertIntToString (todayDay);
     return temporaryDate;
 }
 
@@ -48,7 +47,7 @@ int DateManager::getFullTodayDateAsOneNumber()
         temporaryMonth = '0' + SupportMethod::convertIntToString (todayMonth);
     }
     temporaryDate = temporaryDate + temporaryMonth;
-    if (todayDay >=10)
+    if (todayDay >= 10)
     {
         temporaryDay = SupportMethod::convertIntToString (todayDay);
     }
@@ -63,41 +62,41 @@ int DateManager::getFullTodayDateAsOneNumber()
 
 bool DateManager::isDateValid(int day, int month, int year)
 {
-
-    if((1000 <= year) && (year <= todayYear))
+    if ((1000 <= year) && (year <= todayYear))
     {
-        if((month==1 || month==3 || month==5|| month==7|| month==8||month==10||month==12) && (day>0) && (day<=31))
+        switch (month)
         {
-            return 1;
-        }
-        else if(((month==4) || (month==6) || (month==9)|| (month==11)) && (day>0) && (day<=30))
-        {
-            return 1;
-        }
-        else if(month==2)
-        {
-            if((year%400==0 || (year%100!=0 && year%4==0)) && day>0 && day<=29)
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            if (day <= 31)
             {
-                return 1;
+                return true;
             }
-            else if(day>0 && day<=28)
+            break;
+        case 4: case 6: case 9: case 11:
+            if (day <= 30)
             {
-                return 1;
+                return true;
+            }
+            break;
+        case 2:
+            if ((year%400 == 0 || (year%100 != 0 && year%4 == 0)) && day > 0 && day <= 29)
+            {
+                return true;
+            }
+            else if(day > 0 && day <= 28)
+            {
+                return true;
             }
             else
             {
-                return 0;
+                return false;
             }
+            break;
+        default:
+            return false;
+            break;
         }
-        else
-        {
-            return 0;
-        }
-
     }
-    else
-    {
-        return 0;
-    }
-  return 0;
+    return false;
 }
+
